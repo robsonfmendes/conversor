@@ -1,7 +1,3 @@
-# conversor
-
-
-
 # Conversor
 
 Este sistema faz a conversão de arquivos de vídeo. Recebe como entrada um arquivo com extensão desconhecida e converte para uma extensão conhecida.
