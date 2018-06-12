@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<link rel="stylesheet" href="webjars/bootstrap/4.1.1/css/bootstrap.css">
+		<link rel="stylesheet" href="styles.css">
+		<script src="webjars/angularjs/1.7.0/angular.js"></script>
+		<script src="webjars/angularjs/1.7.0/angular-resource.js"></script>
+		<script src="webjars/angularjs/1.7.0/angular-animate.js"></script>
+		<script src="webjars/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
+		<script src="webjars/ng-file-upload/12.0.4/ng-file-upload.js"></script>
+		<script src="webjars/jquery/2.1.4/jquery.js"></script>
+		<script src="app.js"></script>
+	</head>
+	<body>
+		<form name="myForm" ng-controller="ConversorDeVideoController">
+		  <div class="container">
+		    <div class="row">
+		        <div class="col-md-offset-2 col-md-8">
+				     <h1>Conversor de Vídeo</h1>
+				     <p>Escolha o arquivo de vídeo para conversão e clique no botão converter</p>
+
+					 <div class="form-group">
+				       <input type="file" 
+				         ngf-select 
+				         ng-model="videoFile" name="file"    
+				         ngf-max-size="250MB"
+				         required>
+				         <i ng-show="myForm.file.$error.maxSize">Arquivo maior do que o limite aceito em {{videoFile.size / 1000000|number:1}}MB: max 25M</i>
+				     </div>
+			         <div class="form-group">				   
+					   <button class="btn btn-danger btn-xs" 
+				         ng-click="videoFile = null" 
+				         ng-show="videoFile">
+				         <i class="glyphicon glyphicon-remove"></i> Remove
+				       </button>
+				     </div>			 
+				     <!-- Converter -->
+				     <button class="btn btn-success" 
+				       ng-disabled="!myForm.$valid" 
+				       ng-click="uploadVideo(videoFile)">
+				       <i class="glyphicon glyphicon-ok"></i> Converter
+				     </button>
+	
+					 <p>
+				       <div class="alert alert-danger" ng-show="errorMsg">Erro ao converter o arquivo!</div>
+				       <div class="alert alert-success" ng-show="videoFile.result">Conversão concluída com Sucesso!</div>
+				     </p>		
+				</div>				    
+			</div>
+			<div ng-show="existeUrlVideo > 0">
+		    	<h1>Vídeo Convertido</h1>
+				<hr>    
+		    	<div style="padding-left: 40px;" >              
+					<video ng-src="{{urlVideo}}" 
+						style="width:40%; 
+						height:40%; 
+						padding:20;" 
+						type="video/mp4"
+						class="embed-responsive embed-responsive-16by9" 
+						id="myVideo" controls autoplay>
+					</video>					
+				</div>
+			</div>
+		</div>
+		   
+			<div class="modal bd-example-modal-sm" id="popupCarregando" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="z-index: 10000; backgound:rgba(#000, .4); !important">
+			    <div class="modal-dialog modal-sm">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <h4 class="modal-title">
+			                    <span class="glyphicon glyphicon-time">
+			                    </span> Convertendo
+		                    </h4>
+			            </div>
+			            <div class="modal-body">
+			                <div class="progress">
+			                    <div class="progress-bar progress-bar-warning
+			                    	progress-bar-striped active"
+			                         style="width: 100%">
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+	   </form> 
+	</body>
+</html>
