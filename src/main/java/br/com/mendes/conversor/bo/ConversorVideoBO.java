@@ -12,7 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import br.com.mendes.conversor.client.ZencoderClient;
-import br.com.mendes.uploaded.repository.VideoRepository;
+import br.com.mendes.conversor.repositorio.VideoRepository;
 
 public class ConversorVideoBO {
 
@@ -25,6 +25,7 @@ public class ConversorVideoBO {
 		try {
 	        //Armazena o arquivo carregado no aws		
 			String urlArmazenamentoVideo = armazenaVideoCarregado(video);
+			System.out.println("Url Armazenamento: "+ urlArmazenamentoVideo);			
 			
 			if(!urlArmazenamentoVideo.equals("") && urlArmazenamentoVideo != null) {
 			
@@ -32,12 +33,15 @@ public class ConversorVideoBO {
 				String urlVideoConvertido = converteVideo(urlArmazenamentoVideo);
 				
 				urlFinal = urlVideoConvertido;
-				
+				System.out.println("Url Video Convertido: "+ urlVideoConvertido);
+
 				if(!urlVideoConvertido.equals("") && urlVideoConvertido != null) {
 			        //Armazena o arquivo convertido no aws							
 					String tempDir = System.getProperty("java.io.tmpdir"); 
 					String caminhoTemporario = tempDir + FilenameUtils.removeExtension(video.getName()) + "_convertido.mp4";
 
+					System.out.println("Caminho temporario: "+ caminhoTemporario);
+					
 					HttpClient client = HttpClientBuilder.create().build();
 					HttpGet request = new HttpGet(urlVideoConvertido);
 					HttpResponse response = client.execute(request);
@@ -57,6 +61,7 @@ public class ConversorVideoBO {
 					fos.close();
 					
 					urlFinal = armazenaVideoCarregado(videoConvertido);				
+					System.out.println("URL Final: "+ urlFinal);
 				}
 			}
 		} catch (IOException e) {

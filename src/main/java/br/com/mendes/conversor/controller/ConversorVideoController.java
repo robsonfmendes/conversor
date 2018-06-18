@@ -1,4 +1,4 @@
-package br.com.mendes.uploaded.controller;
+package br.com.mendes.conversor.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +18,7 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import br.com.mendes.conversor.bo.ConversorVideoBO;
 import br.com.mendes.conversor.client.ZencoderClient;
-import br.com.mendes.uploaded.repository.VideoRepository;
+import br.com.mendes.conversor.repositorio.VideoRepository;
 
 @Path("/upload")
 public class ConversorVideoController {

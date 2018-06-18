@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-import br.com.mendes.uploaded.controller.ConversorVideoController;
+import br.com.mendes.conversor.controller.ConversorVideoController;
 
 public class MyAppCONFIG extends Application {
 

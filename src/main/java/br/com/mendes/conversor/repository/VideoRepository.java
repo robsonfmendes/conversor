@@ -1,9 +1,9 @@
-package br.com.mendes.uploaded.repository;
+package br.com.mendes.conversor.repository;
 
 import java.io.File;
 import java.io.IOException;
 
-import br.com.mendes.conversor.servico.ServicoAws;
+import br.com.mendes.conversor.service.ServicoAws;
 
 public class VideoRepository {
 

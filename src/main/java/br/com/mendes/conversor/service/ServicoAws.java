@@ -1,4 +1,4 @@
-package br.com.mendes.conversor.servico;
+package br.com.mendes.conversor.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 
 public class ServicoAws {
-	private static String BUCKET_NAME = "conversor2";
+	private static String BUCKET_NAME = "conversor";
 	
 	public void armazenaVideoNoAws(File arquivo) throws IOException {
 
